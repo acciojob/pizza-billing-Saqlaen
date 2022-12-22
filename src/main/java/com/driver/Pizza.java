@@ -20,11 +20,11 @@ public class Pizza {
         bill = "";
         baseVeg = 300;
         baseNonveg = 400;
-        extraCheese = 80;
-        extraToppingVeg = 70;
-        extrToppingNonVeg = 120;
-        paperBag = 20;
-        
+        extraCheese = 0;
+        extraToppingVeg = 0;
+        extrToppingNonVeg = 0;
+        paperBag = 0;
+
         if( isVeg ){
             this.price = baseVeg;
         }
@@ -40,22 +40,26 @@ public class Pizza {
 
     public void addExtraCheese(){
         cheeseFlag = true;
-        this.price += extraCheese;
+        extraCheese += 80;
+        this.price += 80;
     }
 
     public void addExtraToppings(){
         toppingFlag = true;
         if( isVeg ){
-            this.price += extraToppingVeg;
+            extraToppingVeg += 70;
+            this.price += 70;
         }
         else{
-            this.price += extrToppingNonVeg;
+            extrToppingNonVeg += 120;
+            this.price += 120;
         }
     }
 
     public void addTakeaway(){
         paperBagFlag = true;
-        this.price += paperBag;
+        paperBag += 20;
+        this.price += 20;
     }
 
     public String getBill(){
