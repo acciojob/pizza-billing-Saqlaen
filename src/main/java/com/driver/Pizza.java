@@ -5,11 +5,8 @@ public class Pizza {
     private int price;
     private Boolean isVeg;
     private String bill;
-    private int baseVeg;
-    private int baseNonveg;
     private int extraCheese;
-    private int extraToppingVeg;
-    private int extrToppingNonVeg;
+    private int topping;
     private int paperBag;
     private boolean cheeseFlag;
     private boolean toppingFlag;
@@ -18,18 +15,16 @@ public class Pizza {
     public Pizza(Boolean isVeg){
         this.isVeg = isVeg;
         bill = "";
-        baseVeg = 300;
-        baseNonveg = 400;
-        extraCheese = 0;
-        extraToppingVeg = 0;
-        extrToppingNonVeg = 0;
-        paperBag = 0;
+        extraCheese = 80;
+        paperBag = 20;
 
         if( isVeg ){
-            this.price = baseVeg;
+            this.price = 300;
+            this.topping = 70;
         }
         else{
-            this.price = baseNonveg;
+            this.price = 400;
+            this.topping = 120;
         }
 
     }
@@ -39,55 +34,60 @@ public class Pizza {
     }
 
     public void addExtraCheese(){
-        cheeseFlag = true;
-        extraCheese += 80;
-        this.price += 80;
+        if( cheeseFlag == false ){
+            cheeseFlag = true;
+            this.price += this.extraCheese;
+        }
     }
 
     public void addExtraToppings(){
-        toppingFlag = true;
         if( isVeg ){
-            extraToppingVeg += 70;
-            this.price += 70;
+            if( toppingFlag == false ){
+                this.price += this.topping;
+                toppingFlag = true;
+            }
         }
         else{
-            extrToppingNonVeg += 120;
-            this.price += 120;
+            if( toppingFlag == false ){
+                toppingFlag = true;
+                this.price += this.topping;
+            }
         }
     }
 
     public void addTakeaway(){
-        paperBagFlag = true;
-        paperBag += 20;
-        this.price += 20;
+        if( paperBagFlag == false ){
+            paperBagFlag = true;
+            this.price += paperBag;
+        }
     }
 
     public String getBill(){
         if( isVeg ){
-            bill += "Base Price Of The Pizza: "+baseVeg+"\n";
+            bill += "Base Price Of The Pizza: "+300+"\n";
             if( cheeseFlag ){
-                bill += "Extra Cheese Added: "+extraCheese+"\n";
+                bill += "Extra Cheese Added: "+this.extraCheese+"\n";
             }
             if( toppingFlag ){
-                bill += "Extra Toppings Added: "+extraToppingVeg+"\n";
+                bill += "Extra Toppings Added: "+this.topping+"\n";
             }
             if( paperBagFlag ){
-                bill += "Paperbag Added: "+paperBag+"\n";
+                bill += "Paperbag Added: "+this.paperBag+"\n";
             }
-            bill += "Total Price: "+price+"\n";
+            bill += "Total Price: "+this.price+"\n";
         }
         else{
-            bill += "Base Price Of The Pizza: "+baseNonveg+"\n";
+            bill += "Base Price Of The Pizza: "+ 400 +"\n";
             if( cheeseFlag ){
-                bill += "Extra Cheese Added: "+extraCheese+"\n";
+                bill += "Extra Cheese Added: "+this.extraCheese+"\n";
             }
             if( toppingFlag ){
-                bill += "Extra Toppings Added: "+extrToppingNonVeg+"\n";
+                bill += "Extra Toppings Added: "+this.topping+"\n";
             }
             if( paperBagFlag ){
-                bill += "Paperbag Added: "+paperBag+"\n";
+                bill += "Paperbag Added: "+this.paperBag+"\n";
             }
-            bill += "Total Price: "+price+"\n";
+            bill += "Total Price: "+this.price+"\n";
         }
         return this.bill;
     }
