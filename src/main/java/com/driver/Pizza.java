@@ -3,7 +3,7 @@ package com.driver;
 public class Pizza {
 
     private int price;
-    private Boolean isVeg;
+    private Boolean Veg;
     private String bill;
     private int extraCheese;
     private int topping;
@@ -14,12 +14,12 @@ public class Pizza {
     private boolean billGenerated;
 
     public Pizza(Boolean isVeg){
-        this.isVeg = isVeg;
+        this.Veg = isVeg;
         bill = "";
-        extraCheese = 80;
-        paperBag = 20;
+        this.extraCheese = 80;
+        this.paperBag = 20;
 
-        if( isVeg ){
+        if( Veg ){
             this.price = 300;
             this.topping = 70;
         }
@@ -42,7 +42,7 @@ public class Pizza {
     }
 
     public void addExtraToppings(){
-        if( isVeg ){
+        if( Veg ){
             if( toppingFlag == false ){
                 this.price += this.topping;
                 toppingFlag = true;
